@@ -11,7 +11,7 @@ type Props = {
 
 export default function Footer({ todos, filterOption, onFilter }: Props) {
   const hasLeftTodos = todos.filter(todo => !todo.completed).length;
-  const hasCompletedTodos = todos.filter(todo => todo.completed);
+  const hasCompletedTodos = todos.filter(todo => todo.completed).length;
 
   return (
     <footer className="todoapp__footer" data-cy="Footer">
@@ -56,15 +56,14 @@ export default function Footer({ todos, filterOption, onFilter }: Props) {
       </nav>
 
       {/* this button should be disabled if there are no completed todos */}
-      {hasCompletedTodos.length > 0 && (
-        <button
-          type="button"
-          className="todoapp__clear-completed"
-          data-cy="ClearCompletedButton"
-        >
-          Clear completed
-        </button>
-      )}
+      <button
+        type="button"
+        className="todoapp__clear-completed"
+        data-cy="ClearCompletedButton"
+        disabled={!hasCompletedTodos}
+      >
+        Clear completed
+      </button>
     </footer>
   );
 }
