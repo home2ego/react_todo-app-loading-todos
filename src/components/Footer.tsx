@@ -10,13 +10,13 @@ type Props = {
 };
 
 export default function Footer({ todos, filterOption, onFilter }: Props) {
-  const hasLeftTodos = todos.filter(todo => !todo.completed).length;
-  const hasCompletedTodos = todos.filter(todo => todo.completed).length;
+  const countTodosLeft = todos.filter(todo => !todo.completed).length;
+  const countTodosCompleted = todos.filter(todo => todo.completed).length;
 
   return (
     <footer className="todoapp__footer" data-cy="Footer">
       <span className="todo-count" data-cy="TodosCounter">
-        {hasLeftTodos} items left
+        {countTodosLeft} items left
       </span>
 
       {/* Active link should have the 'selected' class */}
@@ -60,7 +60,7 @@ export default function Footer({ todos, filterOption, onFilter }: Props) {
         type="button"
         className="todoapp__clear-completed"
         data-cy="ClearCompletedButton"
-        disabled={!hasCompletedTodos}
+        disabled={!countTodosCompleted}
       >
         Clear completed
       </button>
